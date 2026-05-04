@@ -493,21 +493,8 @@ const DetailPanel = ({ jurisdiction, onClose, isMobile }) => {
   const status = STATUS_CONFIG[jurisdiction.status];
   const StatusIcon = status.icon;
 
-  const caseRef = jurisdiction.id
-    .split('')
-    .reduce((a, c) => a + c.charCodeAt(0), 0)
-    .toString(16)
-    .toUpperCase()
-    .padStart(6, '0');
-
   return (
     <div className="h-full flex flex-col relative bg-white">
-      {/* Top metadata strip */}
-      <div className="px-6 pt-4 pb-3 border-b border-slate-200 flex items-center justify-between text-[9px] font-mono uppercase tracking-[0.2em] text-slate-500">
-        <span>DOSSIER · {caseRef}</span>
-        <span>CLASS {status.label.toUpperCase()}</span>
-      </div>
-
       {/* Header */}
       <div className="px-6 pt-5 pb-4 border-b border-slate-200">
         <div className="flex items-start justify-between gap-3">
@@ -594,18 +581,6 @@ const DetailPanel = ({ jurisdiction, onClose, isMobile }) => {
           >
             {jurisdiction.forensicNote}
           </p>
-        </div>
-
-        {/* Case footer */}
-        <div className="mt-6 pt-4 border-t border-slate-200">
-          <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.2em] font-mono text-slate-400">
-            <span>CASE · {jurisdiction.id.toUpperCase()}</span>
-            <span>REF · HAI-{caseRef}</span>
-          </div>
-          <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.2em] font-mono text-slate-400 mt-2">
-            <span>HUGHES AI AUDIT</span>
-            <span>QUERY COMPLETE</span>
-          </div>
         </div>
       </div>
     </div>
@@ -701,7 +676,7 @@ const ViewToggle = ({ view, setView }) => (
 //   file → copy the URL from the browser. It should end in /raw/<hash>/jurisdictions.json
 //   Tip: Use the *unpinned* raw URL (without the commit hash) if you want updates
 //   to propagate automatically. Note: GitHub caches raw URLs for ~5 minutes.
-const REMOTE_DATA_URL = 'https://gist.githubusercontent.com/chughes-creator/ce785b2fbe76bad241df9b1bdded6cad/raw/jurisdictions.json';
+const REMOTE_DATA_URL = 'https://gist.githubusercontent.com/YOUR_USERNAME/YOUR_GIST_ID/raw/jurisdictions.json';
 
 // Validates a single jurisdiction object has the required fields.
 // If remote data is malformed, we silently drop it and keep the fallback.
